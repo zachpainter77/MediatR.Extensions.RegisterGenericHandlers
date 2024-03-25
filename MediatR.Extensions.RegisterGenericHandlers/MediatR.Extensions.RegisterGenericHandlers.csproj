@@ -4,7 +4,26 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>ZachPainter.Persistence.EFCore.MediatR</RootNamespace>
+    <Authors>Zach Painter</Authors>
+    <Copyright>Copyright Zach Painter</Copyright>
+    <PackageIconUrl>gradient_128x128.png</PackageIconUrl>
+    <PackageTags>mediator;request;response;queries;commands;notifications</PackageTags>
+    <Description>An extension method for registering MediatR generic handlers.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <Deterministic>true</Deterministic>
+   
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\logo\gradient_128x128.png" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <PropertyGroup>
     <PackageId>NuGet.Workflow</PackageId>
