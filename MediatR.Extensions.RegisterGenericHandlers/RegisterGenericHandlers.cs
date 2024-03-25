@@ -5,6 +5,7 @@ namespace MediatR.Extensions.RegisterGenericHandlers
 {
     public static class RegisterGenericHandlers
     {
+        //comment
         public static IServiceCollection RegisterGenericMediatorHandlers(this IServiceCollection services, IEnumerable<Assembly> assembliesToScan, Func<Type, bool>? typeEvaluator = null)
         {
             typeEvaluator ??= t => true;
