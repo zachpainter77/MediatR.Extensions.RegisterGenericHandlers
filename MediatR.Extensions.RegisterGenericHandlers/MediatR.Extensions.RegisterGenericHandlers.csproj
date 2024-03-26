@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>MediatR.Extensions.RegisterGenericHandlers</PackageId>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <RootNamespace>ZachPainter.Persistence.EFCore.MediatR</RootNamespace>
-    <Authors>Zach Painter</Authors>
-    <Copyright>Copyright Zach Painter</Copyright>
+    <Nullable>enable</Nullable>    
+    <RootNamespace>MediatR.Extensions.RegisterGenericHandlers</RootNamespace>
+    <Authors>Zach Painter</Authors>    
     <PackageIconUrl>gradient_128x128.png</PackageIconUrl>
     <PackageTags>mediator;request;response;queries;commands;notifications</PackageTags>
     <Description>An extension method for registering MediatR generic handlers.</Description>
@@ -18,7 +18,11 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <Deterministic>true</Deterministic>
-   
+    <Version>0.0.7</Version>
+    <Company>Zach Painter</Company>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/zachpainter77/MediatR.Extensions.RegisterGenericHandlers</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,11 +31,11 @@
     </None>
   </ItemGroup>
 
-  <PropertyGroup>
-    <PackageId>NuGet.Workflow</PackageId>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/zachpainter77/MediatR.Extensions.RegisterGenericHandlers</RepositoryUrl>
-  </PropertyGroup>
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.2.0" />

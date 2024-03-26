@@ -1,0 +1,3 @@
+MediatR.Extensions.RegisterGenericHandlers
+===========================================
+

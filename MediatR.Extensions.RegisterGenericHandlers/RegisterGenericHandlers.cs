@@ -1,11 +1,34 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using MediatR;
 
 namespace MediatR.Extensions.RegisterGenericHandlers
 {
+    /// <summary>
+    /// static class to hold extension methods
+    /// </summary>
     public static class RegisterGenericHandlers
     {
-        //comment
+        /// <summary>
+        /// Extension Method to register generic handlers from assemblies containing type "T"
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="services"></param>
+        /// <param name="typeEvaluator"></param>
+        /// <returns></returns>
+        public static IServiceCollection RegisterGenericHandlersFromAssemblyConataining<T>(this IServiceCollection services, Func<Type, bool>? typeEvaluator = null)
+        {
+            var assemblies = typeof(T).Assembly;
+            return RegisterGenericMediatorHandlers(services, [assemblies], typeEvaluator);
+        }
+
+        /// <summary>
+        /// Extension Method to register generic handlers
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="assembliesToScan"></param>
+        /// <param name="typeEvaluator"></param>
+        /// <returns></returns>
         public static IServiceCollection RegisterGenericMediatorHandlers(this IServiceCollection services, IEnumerable<Assembly> assembliesToScan, Func<Type, bool>? typeEvaluator = null)
         {
             typeEvaluator ??= t => true;
@@ -48,16 +71,16 @@ namespace MediatR.Extensions.RegisterGenericHandlers
             return (serviceType, openRequestHandlerImplementation.MakeGenericType(closingType));
         }
 
-        private static List<Type>? GetConcreteRequestTypes(Type openRequestHandlerInterface, Type openRequestHandlerImplementation, IEnumerable<Assembly> assembliesToScan)
+        private static List<Type>? GetConcreteRequestTypes(Type concreteInterface, Type openRequestHandlerImplementation, IEnumerable<Assembly> assembliesToScan)
         {
-            var constraints = openRequestHandlerImplementation.GetGenericArguments().First().GetGenericParameterConstraints();
+            var constraints = openRequestHandlerImplementation.GetGenericArguments().First().GetGenericParameterConstraints();   
 
             var typesThatCanClose = assembliesToScan
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => type.IsClass && !type.IsAbstract && constraints.All(constraint => constraint.IsAssignableFrom(type)))
                 .ToList();
 
-            var requestType = openRequestHandlerInterface.GenericTypeArguments.First();
+            var requestType = concreteInterface.GenericTypeArguments.First();
 
             if (requestType.IsGenericParameter)
                 return null;
@@ -71,7 +94,14 @@ namespace MediatR.Extensions.RegisterGenericHandlers
         {
             foreach (var concretion in concretions)
             {
-                var concreteRequests = GetConcreteRequestTypes(openRequestInterface, concretion, assembliesToScan);
+                var concreteInterface = concretion
+                    .GetInterfaces()
+                    .FirstOrDefault(i => i.Name.StartsWith("IRequestHandler"));
+
+                if (concreteInterface is null)
+                    continue;
+
+                var concreteRequests = GetConcreteRequestTypes(concreteInterface, concretion, assembliesToScan);
 
                 if (concreteRequests is null)
                     continue;
