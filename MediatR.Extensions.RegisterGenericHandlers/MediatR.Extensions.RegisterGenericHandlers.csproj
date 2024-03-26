@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>    
     <RootNamespace>MediatR.Extensions.RegisterGenericHandlers</RootNamespace>
     <Authors>Zach Painter</Authors>    
-    <PackageIconUrl>gradient_128x128.png</PackageIconUrl>
+    <PackageIcon>gradient_128x128.png</PackageIcon>
     <PackageTags>mediator;request;response;queries;commands;notifications</PackageTags>
     <Description>An extension method for registering MediatR generic handlers.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -17,8 +17,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Deterministic>true</Deterministic>
-    <Version>0.0.7</Version>
+    <Deterministic>true</Deterministic>    
     <Company>Zach Painter</Company>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/zachpainter77/MediatR.Extensions.RegisterGenericHandlers</RepositoryUrl>
